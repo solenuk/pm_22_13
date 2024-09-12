@@ -8,7 +8,7 @@ const browserSync = require('browser-sync').create();
 const concat = require('gulp-concat');
 const file_include = require('gulp-file-include');
 const gulp = require("gulp");
-
+const imagemin = require('gulp-imagemin');
 
 
 // Minify SCSS
@@ -30,23 +30,25 @@ gulp.task('uglify', () => {
 
 // Include html files together
 gulp.task('html', () => {
-    return src('app/html/*.html')
+    return src('app/index.html')
         .pipe(file_include({
             prefix: '@@',
             basepath: '@file'}))
         .pipe(dest('dist'));
 });
 
-// Compress images
+// Compress img
 gulp.task('img', () => {
-    return src('app/img/*.png')
-
+    return src('app/img/*',{encoding:false})
+        .pipe(imagemin())
+        .pipe(dest('dist/img'));
 });
 
 // Watcher
 gulp.task('watch', () => {
     gulp.watch('app/scss/*.scss', gulp.series('sass'));
     gulp.watch('app/js/*.js', gulp.series('uglify'));
+    gulp.watch('app/index.html', gulp.series('html'));
     gulp.watch('app/html/*.html', gulp.series('html'));
     //gulp.watch('app/img/*.png', gulp.series('img'));
 });
@@ -61,4 +63,4 @@ gulp.task('browser-sync', () => {
     gulp.watch('./dist').on('change', browserSync.reload);
 });
 
-gulp.task('default', gulp.parallel('browser-sync','watch'));
+gulp.task('default',gulp.parallel('browser-sync','watch'));
