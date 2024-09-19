@@ -1,0 +1,67 @@
+@media (max-width: 500px) {
+  body{
+    font-size: 3vw;
+  }
+  .profile-photo{
+    width: 250px !important;
+    height: 250px !important;
+  }
+  .black-section{
+    margin-right: 0 !important;
+  }
+  .vertical-line{
+    height: 0 !important;
+  }
+}
+.profile-photo {
+  width: 400px;
+  height: 400px;
+}
+.name-title {
+  font-size: 7em;
+  letter-spacing: 6px;
+}
+.text-under-title{
+  font-size: 2.5em;
+  letter-spacing: 3px;
+}
+.black-section {
+  background-color: #000;
+  color: #fff;
+  padding: 15px;
+  margin-right: -12px;
+}
+.black-section-text{
+  font-weight: lighter;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+}
+.my-text{
+  h1{
+    font-size: 2.5em;
+    letter-spacing: 3px;
+    margin-top: 50px;
+  }
+  p{
+    font-size: 1.4em;
+    font-family: 'And', sans-serif;
+    padding: 15px;
+  }
+}
+.bg {
+  background-color: #ebebeb;
+  flex-grow: 1;
+}
+.my-list{
+  list-style-type: square;
+  line-height: 250%;
+  font-size: 1.5em;
+  font-weight: lighter;
+  letter-spacing: 1.2px;
+}
+.vertical-line {
+  width: 1px;
+  height: 120px;
+  background-color: gray;
+  margin: 0 20px;
+}

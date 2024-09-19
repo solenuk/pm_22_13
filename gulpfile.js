@@ -9,21 +9,35 @@ const concat = require('gulp-concat');
 const file_include = require('gulp-file-include');
 const gulp = require("gulp");
 const imagemin = require('gulp-imagemin');
+const autoprefixer = require('autoprefixer');
 
 
 // Minify SCSS
-gulp.task('sass', () => {
-    return src('app/scss/*.scss')
+gulp.task('minify-scss', () => {
+    return src('app/scss/*')
         .pipe(sass().on('error', sass.logError))
-        .pipe(postcss([cssnano()]))
+        .pipe(postcss([cssnano(), autoprefixer()]))
         .pipe(rename({suffix: '.min'}))
         .pipe(dest('dist/css'))
 });
 
+// Minify CSS
+gulp.task('minify-css', () => {
+    return src('app/css/*')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(postcss([cssnano(), autoprefixer()]))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(dest('dist/css'))
+});
+
+// Minify SCSS and CSS together
+gulp.task('sass', gulp.series('minify-css','minify-scss'));
+
 // Minify JS
 gulp.task('uglify', () => {
     return src('app/js/*.js')
-        .pipe(concat('all.min.js'))
+        //.pipe(concat('all.min.js'))
+        .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
         .pipe(dest('dist/js'))
 });
@@ -46,11 +60,12 @@ gulp.task('img', () => {
 
 // Watcher
 gulp.task('watch', () => {
-    gulp.watch('app/scss/*.scss', gulp.series('sass'));
+    gulp.watch('app/scss/*.scss', gulp.series('minify-scss'));
+    gulp.watch('app/css/*.css', gulp.series('minify-css'));
     gulp.watch('app/js/*.js', gulp.series('uglify'));
     gulp.watch('app/index.html', gulp.series('html'));
     gulp.watch('app/html/*.html', gulp.series('html'));
-    //gulp.watch('app/img/*.png', gulp.series('img'));
+    gulp.watch('app/img/*', gulp.series('img'));
 });
 
 // Update browser
@@ -63,4 +78,4 @@ gulp.task('browser-sync', () => {
     gulp.watch('./dist').on('change', browserSync.reload);
 });
 
-gulp.task('default',gulp.parallel('browser-sync','watch'));
+gulp.task('default', gulp.series('html', 'sass', 'uglify','img', gulp.parallel('browser-sync','watch')));
