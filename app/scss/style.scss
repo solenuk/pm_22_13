@@ -1,3 +1,4 @@
+$main-color: #ebebeb;
 @media (max-width: 500px) {
   body {
     font-size: 3vw;
@@ -64,13 +65,29 @@
 
   p {
     font-size: 1.5em;
-    font-family: 'And', sans-serif;
-    padding: 15px;
+    font-family: 'Poppins', sans-serif;
+    padding: 15px 0 15px 0.2em;
+  }
+}
+
+.main-section-margin{
+  h1{
+    margin-left: 0.8em;
+  }
+
+  p{
+    margin-left: 1.2em;
+  }
+}
+
+.side-bar{
+  p{
+    margin-left: 0.6em;
   }
 }
 
 .bg {
-  background-color: #ebebeb;
+  background-color: $main-color;
   flex-grow: 1;
 }
 
@@ -80,6 +97,7 @@
   font-size: 1.5em;
   font-weight: lighter;
   letter-spacing: 1.2px;
+  margin-left: 0.3em;
 }
 
 .header-square::before {
@@ -97,17 +115,17 @@
   content: "";
   height: 5px;
   width: 100%;
-  background-color: #ebebeb;
+  background-color: $main-color;
   position: absolute;
   top: 270px;
-  left: 2%;
+  left: 3%;
   z-index: -2;
 }
 
 .header-vertical-line::before {
   content: "";
   width: 1px;
-  border-left: 5px solid #ebebeb;
+  border-left: 5px solid $main-color;
   position: absolute;
   z-index: -2;
   top: -15%;
@@ -117,10 +135,10 @@
 .reference-vertical-line::before {
   content: "";
   width: 1px;
-  border-left: 4px solid #7e6e6e;
+  border-left: 4px solid gray ;
   position: absolute;
   z-index: -2;
   top: 10%;
   bottom: 25%;
-  left: 45%;
+  left: 50%;
 }
