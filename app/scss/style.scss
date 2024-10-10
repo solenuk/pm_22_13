@@ -114,7 +114,7 @@ $main-color: #ebebeb;
 .header-horizontal-line::after {
   content: "";
   height: 5px;
-  width: 100%;
+  width: 97%;
   background-color: $main-color;
   position: absolute;
   top: 270px;
@@ -140,5 +140,16 @@ $main-color: #ebebeb;
   z-index: -2;
   top: 10%;
   bottom: 25%;
-  left: 50%;
+  left: 0;
 }
+//.btn{
+//  margin-left: 2% !important;
+//}
+//.btn:hover{
+//  background-color: #ebebeb;
+//}
+//.content{
+//  max-height: 0;
+//  overflow: hidden;
+//  transition: max-height 0.2s ease-out;
+//}
