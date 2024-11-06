@@ -58,6 +58,13 @@ gulp.task('img', () => {
         .pipe(dest('dist/img'));
 });
 
+// Copy JSON data to dist
+gulp.task('copy-data', ()=>{
+    return src('app/data/data.json')
+        .pipe(dest('dist/data'));
+});
+
+
 // Watcher
 gulp.task('watch', () => {
     gulp.watch('app/scss/*.scss', gulp.series('minify-scss'));
@@ -66,16 +73,17 @@ gulp.task('watch', () => {
     gulp.watch('app/index.html', gulp.series('html'));
     gulp.watch('app/html/*.html', gulp.series('html'));
     gulp.watch('app/img/*', gulp.series('img'));
+    gulp.watch('app/data/data.json', gulp.series('copy-data'));
 });
 
 // Update browser
 gulp.task('browser-sync', () => {
     browserSync.init({
         server: {
-            baseDir: './dist',
+            baseDir: './dist'
         }
     });
     gulp.watch('./dist').on('change', browserSync.reload);
 });
 
-gulp.task('default', gulp.series('html', 'sass', 'uglify','img', gulp.parallel('browser-sync','watch')));
+gulp.task('default', gulp.series('html', 'sass', 'uglify','img', 'copy-data',gulp.parallel('browser-sync','watch')));

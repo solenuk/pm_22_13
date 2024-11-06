@@ -142,7 +142,7 @@
             typeof obj;
     }
     /* global Symbol */
-// Defining this global in .eslintrc.json would create a danger of using the global
+// Defining this global in .eslintrc.data would create a danger of using the global
 // unguarded in another place, it seems safer to define global only for this module
 
 
@@ -9147,7 +9147,7 @@
                 text: "text/plain",
                 html: "text/html",
                 xml: "application/xml, text/xml",
-                json: "application/json, text/javascript"
+                json: "application/data, text/javascript"
             },
 
             contents: {
@@ -9172,7 +9172,7 @@
                 // Text to html (true = no transformation)
                 "text html": true,
 
-                // Evaluate text as a json expression
+                // Evaluate text as a data expression
                 "text json": JSON.parse,
 
                 // Parse text as xml
@@ -10041,7 +10041,7 @@
     } );
 
 // Detect, normalize options and install callbacks for jsonp requests
-    jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
+    jQuery.ajaxPrefilter( "data jsonp", function( s, originalSettings, jqXHR ) {
 
         var callbackName, overwritten, responseContainer,
             jsonProp = s.jsonp !== false && ( rjsonp.test( s.url ) ?
@@ -10067,7 +10067,7 @@
                 s.url += ( rquery.test( s.url ) ? "&" : "?" ) + s.jsonp + "=" + callbackName;
             }
 
-            // Use data converter to retrieve json after script execution
+            // Use data converter to retrieve data after script execution
             s.converters[ "script json" ] = function() {
                 if ( !responseContainer ) {
                     jQuery.error( callbackName + " was not called" );
@@ -10075,7 +10075,7 @@
                 return responseContainer[ 0 ];
             };
 
-            // Force json dataType
+            // Force data dataType
             s.dataTypes[ 0 ] = "json";
 
             // Install callback

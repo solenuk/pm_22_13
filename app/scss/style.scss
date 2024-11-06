@@ -1,4 +1,8 @@
 $main-color: #ebebeb;
+@mixin text_font {
+  font-family: 'Poppins', sans-serif;
+}
+
 @media (max-width: 500px) {
   body {
     font-size: 3vw;
@@ -52,7 +56,7 @@ $main-color: #ebebeb;
 
 .black-section-text {
   font-weight: lighter;
-  font-family: 'Poppins', sans-serif;
+  @include text_font;
   letter-spacing: 1px;
 }
 
@@ -64,24 +68,24 @@ $main-color: #ebebeb;
   }
 
   p {
+    @include text_font;
     font-size: 1.5em;
-    font-family: 'Poppins', sans-serif;
     padding: 15px 0 15px 0.2em;
   }
 }
 
-.main-section-margin{
-  h1{
+.main-section-margin {
+  h1 {
     margin-left: 0.8em;
   }
 
-  p{
+  p {
     margin-left: 1.2em;
   }
 }
 
-.side-bar{
-  p{
+.side-bar {
+  p {
     margin-left: 0.6em;
   }
 }
@@ -132,27 +136,35 @@ $main-color: #ebebeb;
   bottom: 0;
   left: 96%;
 }
+
 .reference-vertical-line::before {
   content: "";
   width: 1px;
-  border-left: 4px solid gray ;
+  border-left: 4px solid gray;
   position: absolute;
   z-index: -2;
   top: 10%;
   bottom: 25%;
   left: 0;
 }
-.btn{
+
+.btn {
   margin-left: 2% !important;
 }
-.btn:hover{
+
+.btn:hover {
   background-color: $main-color;
   border-color: gray;
 }
+
 .content {
-  display: none;
+  display: block;
   // UNCOMMENT FOR PLAIN JS ANIMATION //
   //overflow: hidden;
   //max-height: 0;
   //transition: max-height 0.4s ease-out;
+}
+
+#data-container {
+  @include text_font;
 }
