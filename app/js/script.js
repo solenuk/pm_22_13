@@ -13,34 +13,16 @@
 //     })
 // }
 
-
 // using Jquery
 $(".btn").click(function () {
     $content = $(this).next();
     $content.slideToggle(400);
 });
 
-// XML request
-const xmlhttp = new XMLHttpRequest();
-const url = 'data/data.json';
-
-xmlhttp.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-        const data = JSON.parse(xmlhttp.responseText);
-        renderData(data, "XMLHttpRequest");
-    }
-    else{
-        console.error('Помилка під час завантаження даних', this.status);
-    }
-};
-
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-
 // Fetch API req
 async function getData() {
     try{
-        const response = await fetch("data/data.json");
+        const response = await fetch("http://localhost:8080/data/data.json",{cache:"no-store"});
         if (!response.ok) {
             throw new Error('Помилка при завантаженні даних');
         }
@@ -54,16 +36,13 @@ async function getData() {
 getData();
 
 // Show data on page
-function renderData(data,method) {
+function renderData(data) {
     const data_container = document.getElementById("data-container");
-    let section_title = document.createElement("h1");
-    section_title.className = "section-title";
-    section_title.textContent = `Loading JSON using ${method}`;
-    data_container.appendChild(section_title);
 
     data.forEach((element) => {
         const div = document.createElement("div");
 
+        let section_title = document.createElement("h1");
         section_title = document.createElement("h3");
         section_title.className = "section-title";
         section_title.textContent = `Day of the Week: ${element.day}`;

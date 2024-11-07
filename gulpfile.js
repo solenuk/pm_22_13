@@ -60,10 +60,9 @@ gulp.task('img', () => {
 
 // Copy JSON data to dist
 gulp.task('copy-data', ()=>{
-    return src('app/data/data.json')
+    return src('data/data.json')
         .pipe(dest('dist/data'));
 });
-
 
 // Watcher
 gulp.task('watch', () => {
@@ -73,7 +72,7 @@ gulp.task('watch', () => {
     gulp.watch('app/index.html', gulp.series('html'));
     gulp.watch('app/html/*.html', gulp.series('html'));
     gulp.watch('app/img/*', gulp.series('img'));
-    gulp.watch('app/data/data.json', gulp.series('copy-data'));
+    gulp.watch('data/data.json', gulp.series('copy-data'));
 });
 
 // Update browser
